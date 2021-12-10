@@ -1,0 +1,237 @@
+/*
+    Project:  Due Dilly - React Admin Template
+    Version: 1.0.0
+    Date Created: 2020-08-19T15:29:29+07:00
+    Date Updated: 2020-12-02T12:22:15+07:00
+    Developed by: nouthemes
+*/
+
+@import "utilies/mixin";
+@import "vendor/media_query";
+@import "vendor/bourbon/bourbon";
+
+@import "utilies/settings";
+
+@import "base/typhography";
+@import "elements/grid";
+@import "elements/button";
+@import "elements/form";
+@import "elements/pagination";
+@import "elements/block";
+
+@import "elements/panel";
+@import "elements/filter";
+@import "elements/table";
+@import "elements/dropdown";
+@import "elements/loader";
+
+@import "components/forms";
+@import "components/section";
+@import "components/pages";
+@import "components/menu";
+
+@import "modules/header";
+@import "modules/footer";
+
+@import "elements/helpers";
+
+@import "components/stripe";
+
+@font-face {
+  font-family: "Pti-Improv";
+  src: url("/fonts/pti-improv.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.ps-btn {
+  font-weight: bold !important;
+}
+
+.ant-btn-primary,
+.ps-btn.success {
+  background: $color-1st !important;
+  border: 2px solid $color-1st;
+  font-weight: bold !important;
+  border-radius: 0 !important;
+  color: #fff;
+}
+
+.ant-btn-primary,
+.ps-btn.success:hover {
+  background: #27a4ad;
+  color: #fff;
+}
+
+.ant-btn-primary.full {
+  width: 100%;
+  height: 50px !important;
+}
+
+.main-title {
+  position: relative;
+  h1.ant-typography {
+    position: relative;
+    z-index: 1;
+    font-size: 32px;
+  }
+
+  h1.ant-typography.text-shadow {
+    -webkit-text-stroke: 0.5px #ccc;
+    color: #fff;
+    position: absolute;
+    top: -45px;
+    left: 5px;
+    z-index: 0;
+  }
+
+  h1.ant-typography:not(.text-shadow)::after {
+    content: "";
+    position: absolute;
+    width: 55px;
+    height: 10px;
+    background-color: #222;
+    left: 0;
+    bottom: -20px;
+  }
+}
+
+.auth-container {
+  max-width: 500px;
+  width: 100%;
+  border: 1px #f5f5f5 solid;
+  border-top: 10px $color-1st solid;
+  padding: 15px;
+  min-height: 100vh;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+a:link,
+a:visited {
+  color: $color-1st;
+}
+
+a:link:hover,
+a:visited:hover {
+  color: #27a4ad;
+}
+
+.ant-dropdown-menu {
+  padding: 20px;
+  .ant-dropdown-menu-item {
+    padding: 10px 20px;
+  }
+  &.dark-menu {
+    background-color: $color-bg-header !important;
+  }
+  li {
+    a {
+      color: #fff !important;
+    }
+  }
+}
+
+.ant-select-selector {
+  height: 50px !important;
+  .ant-select-selection-placeholder {
+    line-height: 50px !important;
+  }
+  .ant-select-selection-search-input {
+    height: 50px !important;
+  }
+  .ant-select-selection-item {
+    line-height: 50px !important;
+  }
+}
+
+.chip-select {
+  .ant-select-selection-item {
+    line-height: 40px !important;
+    height: 40px !important;
+  }
+}
+
+.ps-btn--outline {
+  padding: 10px 35px !important;
+}
+
+
+
+
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+  }
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+    padding-left: 50%; 
+    padding-top:30px!important;
+    padding-bottom: 10px!important;
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-left: 10px!important; 
+		white-space: nowrap;
+	}
+	
+
+  .product-table{
+    td:nth-of-type(1):before { content: ""; font-weight: bold; }
+    td:nth-of-type(2):before { content: "Player Name"; font-weight: bold; }
+    td:nth-of-type(3):before { content: "Title"; font-weight: bold; }
+    td:nth-of-type(4):before { content: "Quantity"; font-weight: bold; }
+    td:nth-of-type(5):before { content: "Price"; font-weight: bold; }
+    td:nth-of-type(6):before { content: "Date"; font-weight: bold; }
+    td:nth-of-type(7):before { content: "Actions"; font-weight: bold; }
+  }
+  .orders-table{
+    td:nth-of-type(1):before { content: "Products"; font-weight: bold; }
+    td:nth-of-type(2):before { content: "Price";  font-weight: bold;}
+    td:nth-of-type(3):before { content: "Buyer Name";  font-weight: bold; }
+    td:nth-of-type(4):before { content: "Buyer Address";  font-weight: bold;}
+    td:nth-of-type(5):before { content: "Date";  font-weight: bold;}
+    td:nth-of-type(6):before { content: "Status";  font-weight: bold;}
+  }
+}
+
+textarea.ant-input{
+  resize: none;
+  max-height: 100%;
+  border:none;
+  padding: 10px;
+}
+
+.ant-input-textarea{
+  padding:0;
+  height: auto!important;
+}
+
+.ant-input-textarea-show-count:after {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 0.9rem;
+}
