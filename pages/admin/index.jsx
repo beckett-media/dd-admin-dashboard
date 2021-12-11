@@ -33,4 +33,4 @@ const AdminPage = () => {
   );
 };
 
-export default connect(connectStateToProps)(Authenticated(AdminPage));
+export default Authenticated(AdminPage);
