@@ -11,6 +11,7 @@ import {
   PoweroffOutlined,
   ProfileOutlined,
   UserOutlined,
+  DingdingOutlined
 } from "@ant-design/icons";
 
 const MenuSidebar = () => {
@@ -50,6 +51,11 @@ const MenuSidebar = () => {
       icon: <UserOutlined style={{ fontSize: 20 }} />,
     },
     {
+      text: "New Blog",
+      url: "/newblog",
+      icon: <DingdingOutlined style={{ fontSize: 20 }} />,
+    },
+    {
       text: "Logout",
       action: (e) => {
         console.log("E", e);
@@ -72,6 +78,11 @@ const MenuSidebar = () => {
       icon: <UserOutlined style={{ fontSize: 20 }} />,
     },
     {
+      text: "New Blog",
+      url: "/newblog",
+      icon: <DingdingOutlined style={{ fontSize: 20 }} />,
+    },
+    {
       text: "Logout",
       action: (e) => {
         console.log("E", e);
@@ -80,6 +91,7 @@ const MenuSidebar = () => {
       },
       icon: <PoweroffOutlined style={{ fontSize: 20 }} />,
     },
+
   ];
 
   const menuItems = user?.role === "admin" ? menuItemsAdmin : menuItemsUsers;
