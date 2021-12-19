@@ -51,8 +51,8 @@ const MenuSidebar = () => {
       icon: <UserOutlined style={{ fontSize: 20 }} />,
     },
     {
-      text: "New Blog",
-      url: "/newblog",
+      text: "Blogs",
+      url: "/blogs",
       icon: <DingdingOutlined style={{ fontSize: 20 }} />,
     },
     {
@@ -78,8 +78,8 @@ const MenuSidebar = () => {
       icon: <UserOutlined style={{ fontSize: 20 }} />,
     },
     {
-      text: "New Blog",
-      url: "/newblog",
+      text: "Blogs",
+      url: "/blogs",
       icon: <DingdingOutlined style={{ fontSize: 20 }} />,
     },
     {
