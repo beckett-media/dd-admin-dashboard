@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ContainerDefault from "~/components/layouts/ContainerDefault";
-import TableProjectItems from "~/components/shared/tables/TableProjectItems";
+import BlogItems from "~/components/shared/tables/BlogTable";
 
 import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
 import { connect, useDispatch, useSelector } from "react-redux";
@@ -26,129 +26,108 @@ const BlogPage = (props) => {
     id: 1,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   },
   {
     id: 1,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 1,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 1,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 1,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 1,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 1,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 1,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 2,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 2,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 2,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 2,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 2,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 2,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 2,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 2,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 4,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 4,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 4,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 4,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }, {
     id: 4,
     images: [{ url: ("https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688") }],
     title: "1st Blog",
-    quantity: "",
-    price: "",
+
   }]
 
 
@@ -191,7 +170,7 @@ const BlogPage = (props) => {
       </div>
       <section className="ps-items-listing">
         <div className="ps-section__content">
-          <TableProjectItems list={list || []} />
+          <BlogItems list={list || []} />
         </div>
       </section>
 
