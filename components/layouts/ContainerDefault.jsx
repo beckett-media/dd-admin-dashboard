@@ -57,7 +57,6 @@ const ContainerDefault = ({ children, title }) => {
           refreshToken: localStorage.getItem(`${appName}_refreshToken`),
         })
         var encryptedData = simpleCrypto.encrypt(data);
-        console.log(encryptedData)
         window.location.href = `${marketplaceURL}/?auth=${encodeURIComponent(encryptedData)}`
       },
       icon: <ShoppingOutlined style={{ fontSize: 20 }} />,
@@ -86,7 +85,6 @@ const ContainerDefault = ({ children, title }) => {
     {
       text: "Logout",
       action: (e) => {
-        console.log("E", e);
         e.preventDefault();
         dispatch(logOut());
       },

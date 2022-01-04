@@ -8,6 +8,7 @@ import storeProduct from "./store-product/reducer";
 import store from "./store/reducer";
 import common from "./common/reducer";
 import orders from "./invoices/reducer";
+import blogPress from "./blogPress/reducer";
 
 export default combineReducers({
   auth,
@@ -18,4 +19,5 @@ export default combineReducers({
   orders,
   store,
   storeProduct,
+  blogPress
 });

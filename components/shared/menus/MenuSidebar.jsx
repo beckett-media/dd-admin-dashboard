@@ -58,7 +58,6 @@ const MenuSidebar = () => {
     {
       text: "Logout",
       action: (e) => {
-        console.log("E", e);
         e.preventDefault();
         dispatch(logOut());
       },
@@ -85,7 +84,6 @@ const MenuSidebar = () => {
     {
       text: "Logout",
       action: (e) => {
-        console.log("E", e);
         e.preventDefault();
         dispatch(logOut());
       },
