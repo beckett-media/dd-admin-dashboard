@@ -3,8 +3,8 @@ import axios from "axios";
 // export const marketplaceDomain = "epic-villani-e0510b.netlify.app";
 // export const marketplaceURL = "https://epic-villani-e0510b.netlify.app";
 
-// export const baseDomain = "https://api.duedilly.co";
-export const baseDomain = "http://127.0.0.1:3000";
+export const baseDomain = "https://api.duedilly.co";
+// export const baseDomain = "http://127.0.0.1:3000";
 
 export const marketplaceDomain = "marketplace.duedilly.co";
 // export const marketplaceDomain = "localhost:3001";
