@@ -64,9 +64,9 @@ const TableProjectItems = ({ list = [] }) => {
         return (
           <>
             <p className="ps-item-categories m-0">
-              {item.playerNames.map((tag) => (
+              {item.players ? item.playerNames.map((tag) => (
                 <a key={tag}>{tag}</a>
-              ))}
+              )) : ""}
             </p>
             {!item.isPublic && (
               <span className="badge badge-pill badge-secondary p-3 mr-4 mt-3">

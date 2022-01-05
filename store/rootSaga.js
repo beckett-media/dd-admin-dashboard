@@ -7,6 +7,8 @@ import StoreProductSaga from "./store-product/saga";
 import StoreSaga from "./store/saga";
 import CommonSaga from "./common/saga";
 import OrderSaga from "./invoices/saga";
+import BlogPostSaga from "./blogPost/saga";
+import PressPostSaga from "./pressPost/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -17,6 +19,8 @@ export default function* rootSaga() {
     StoreSaga(),
     CommonSaga(),
     OrderSaga(),
-    StoreProductSaga()
+    StoreProductSaga(),
+    BlogPostSaga(),
+    PressPostSaga(),
   ]);
 }

@@ -13,6 +13,7 @@
 	},
 	"dependencies": {
 		"@ant-design/icons": "^4.6.2",
+		"@tinymce/tinymce-react": "^3.13.0",
 		"@zeit/next-sass": "^1.0.1",
 		"antd": "^4.8.5",
 		"antd-input-tag": "^1.0.14",
