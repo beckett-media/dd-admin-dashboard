@@ -13,7 +13,7 @@ import { notification, Col, Input } from "antd";
 import Router from "next/router";
 import BlogPresBannerUpload from "~/components/shared/upload/BlogPresBannerUpload";
 
-const EditBlogEditor = ({ blog }) => {
+const EditBlogEditor = ({ blog, pageName }) => {
   const init = {
     selector: "textarea#open-source-plugins",
     plugins:
@@ -104,9 +104,9 @@ const EditBlogEditor = ({ blog }) => {
   };
 
   return (
-    <ContainerDefault title="New Blog">
+    <ContainerDefault title={pageName === "blogs" ? "Edit Blog" : "Edit Press"}>
       <HeaderDashboard
-        title="New Blog"
+        title={pageName === "blogs" ? "Edit Blog" : "Edit Press"}
         description="Write from your heart in Due Dilly Blog"
       />
 
@@ -122,7 +122,7 @@ const EditBlogEditor = ({ blog }) => {
             }}
             showCount={true}
             maxLength={40}
-            placeholder="Blog Title"
+            placeholder="Title goes here..."
           />
         </div>
       </Col>
@@ -149,18 +149,19 @@ const EditBlogEditor = ({ blog }) => {
                 id: updatedBlog.id,
                 data: updatedBlog.data,
                 bannerImage: updatedBlog.bannerImage,
+                type: updatedBlog.type,
               });
               notification.success({
                 message: "Updated",
                 description: data.title,
               });
-              //   Router.push("/blogs");
+              Router.push(pageName === "blogs" ? "/blogs" : "/press");
             } catch (error) {
               notification.error({ message: "Error", description: error });
             }
           }}
         >
-          Update Blog
+          Update
         </a>
       </span>
     </ContainerDefault>

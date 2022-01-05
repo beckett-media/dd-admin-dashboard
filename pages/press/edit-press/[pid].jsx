@@ -7,33 +7,33 @@ import { getEditLoader } from "~/store/product/selectors";
 
 import BlogPressRepo from "~/repositories/BlogPressRespository";
 
-const BlogEdit = () => {
+const PressEdit = () => {
   const { query = {} } = useRouter();
   const [isFullLoading, setIsFullLoading] = useState(true);
 
-  const [blog, setBlog] = useState();
+  const [press, setPress] = useState();
 
   useEffect(() => {
     async function getBlogFull() {
       try {
-        const blog = await BlogPressRepo.getBlogFull(query.bid);
-        setBlog(blog.data?.blogPress);
+        const press = await BlogPressRepo.getBlogFull(query.pid);
+        setPress(press.data?.blogPress);
       } catch (error) {
         console.log(error);
       } finally {
         setIsFullLoading(false);
       }
     }
-    if (query?.bid) {
+    if (query?.pid) {
       getBlogFull();
     }
   }, [query]);
 
   return (
     <>
-      <EditBlogEditor blog={blog} pageName="blogs" />
+      <EditBlogEditor blog={press} pageName="press" />
     </>
   );
 };
 
-export default BlogEdit;
+export default PressEdit;

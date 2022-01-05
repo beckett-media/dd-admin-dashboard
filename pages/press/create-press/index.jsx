@@ -12,7 +12,7 @@ import blogPressRepo from "~/repositories/BlogPressRespository";
 import { Col, Form, notification, Input } from "antd";
 import Router from "next/router";
 
-const NewBlog = (props) => {
+const NewPressPage = () => {
   const [bannerImage, setBannerImage] = useState(null);
   const init = {
     selector: "textarea#open-source-plugins",
@@ -98,7 +98,7 @@ const NewBlog = (props) => {
     content_style:
       "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
   };
-  const [blogPressData, setBlogPressData] = useState();
+  const [pressPostData, setPressPostData] = useState();
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {
@@ -106,10 +106,10 @@ const NewBlog = (props) => {
   }, []);
 
   return (
-    <ContainerDefault title="New Blog">
+    <ContainerDefault title="New Press">
       <HeaderDashboard
-        title="New Blog"
-        description="Write from your heart in Due Dilly Blog"
+        title="New Press"
+        description="Write from your heart in Due Dilly Press"
       />
       <Col xs={24} sm={12} md={12}>
         <div className="form-group">
@@ -130,7 +130,7 @@ const NewBlog = (props) => {
       <BlogPresBannerUpload setBannerImage={setBannerImage} />
       <Editor
         init={init}
-        onEditorChange={setBlogPressData}
+        onEditorChange={setPressPostData}
         apiKey="7do9gdezf8u4fuujriwhqjhevhjixd1v0yuq2zy97gzt8o13"
       />
       <span>
@@ -141,20 +141,20 @@ const NewBlog = (props) => {
               const { data } = await blogPressRepo.createBlogPress({
                 title,
                 bannerImage,
-                data: blogPressData,
-                type: "blog",
+                data: pressPostData,
+                type: "press",
               });
               notification.success({
                 message: "Published",
                 description: data.title,
               });
-              Router.push("/blogs");
+              Router.push("/press");
             } catch (error) {
               notification.error({ message: "Error", description: error });
             }
           }}
         >
-          Save And Publish Blog
+          Save And Publish Press
         </a>
       </span>
     </ContainerDefault>
@@ -168,4 +168,4 @@ const NewBlog = (props) => {
 // };
 
 // export default connect(connectStateToProps)(Authenticated(SettingsPage));
-export default NewBlog;
+export default NewPressPage;

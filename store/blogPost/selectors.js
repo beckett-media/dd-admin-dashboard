@@ -1,4 +1,4 @@
-const getData = (state) => state.blogPress;
+const getData = (state) => state.blogPost;
 
 export const getFilters = (state) => getData(state).filters;
 export const getPagination = (state) => getData(state).pagination;

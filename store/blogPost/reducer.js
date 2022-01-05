@@ -11,13 +11,13 @@ export const initState = {
 
 function reducer(state = initState, action) {
   switch (action.type) {
-    case actionTypes.TOOGLE_BLOG_PRESS_LIST_LOADER:
+    case actionTypes.TOOGLE_BLOG_LIST_LOADER:
       return {
         ...state,
         isListLoading: action.value,
       };
 
-    case actionTypes.SET_BLOG_PRESS_LIST:
+    case actionTypes.SET_BLOG_LIST:
       return {
         ...state,
         list: {
@@ -26,7 +26,7 @@ function reducer(state = initState, action) {
         },
         totalBlogs: action.totalBlogs,
       };
-    case actionTypes.UPDATE_PAGE_NUMBER:
+    case actionTypes.UPDATE_BLOG_PAGE_NUMBER:
       return {
         ...state,
         pagination: {
@@ -34,7 +34,7 @@ function reducer(state = initState, action) {
           page: action.page,
         },
       };
-    case actionTypes.HANDLE_BLOG_PRESS_DELETE_LOADING:
+    case actionTypes.HANDLE_BLOG_DELETE_LOADING:
       return {
         ...state,
         isListLoading: action.value,

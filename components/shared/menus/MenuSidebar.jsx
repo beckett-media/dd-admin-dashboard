@@ -1,71 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { logOut } from "~/store/auth/action";
-import { Button } from "antd";
 import {
   CodeSandboxOutlined,
-  ShopOutlined,
   PoweroffOutlined,
-  ProfileOutlined,
   UserOutlined,
-  DingdingOutlined
+  DingdingOutlined,
+  FormOutlined
 } from "@ant-design/icons";
 
 const MenuSidebar = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  let user = useSelector((state) => state.auth.user);
 
-  const menuItemsUsers = [
-    // {
-    //     text: 'Dashboard',
-    //     url: '/',
-    //     icon: 'icon-home',
-    // },
-    {
-      text: "Listings",
-      url: "/products",
-      icon: <CodeSandboxOutlined style={{ fontSize: 20 }} />,
-    },
-    {
-      text: "Stores",
-      url: "/stores",
-      icon: <ShopOutlined style={{ fontSize: 20 }} />,
-    },
-    {
-      text: "Orders",
-      url: "/orders",
-      icon: <ProfileOutlined style={{ fontSize: 20 }} />,
-    },
-    {
-      text: "Snapscore Orders",
-      url: "/snapscore-orders",
-      icon: <ProfileOutlined style={{ fontSize: 20 }} />,
-    },
-    {
-      text: "Profile",
-      url: "/profile",
-      icon: <UserOutlined style={{ fontSize: 20 }} />,
-    },
-    {
-      text: "Blogs",
-      url: "/blogs",
-      icon: <DingdingOutlined style={{ fontSize: 20 }} />,
-    },
-    {
-      text: "Logout",
-      action: (e) => {
-        e.preventDefault();
-        dispatch(logOut());
-      },
-      icon: <PoweroffOutlined style={{ fontSize: 20 }} />,
-    },
-  ];
-
-  const menuItemsAdmin = [
+  const menuItems = [
     {
       text: "Unclaimed Stores",
       url: "/admin/unclaimed-stores",
@@ -82,6 +32,11 @@ const MenuSidebar = () => {
       icon: <DingdingOutlined style={{ fontSize: 20 }} />,
     },
     {
+      text: "Press",
+      url: "/press",
+      icon: <FormOutlined style={{ fontSize: 20 }} />,
+    },
+    {
       text: "Logout",
       action: (e) => {
         e.preventDefault();
@@ -92,7 +47,6 @@ const MenuSidebar = () => {
 
   ];
 
-  const menuItems = user?.role === "admin" ? menuItemsAdmin : menuItemsUsers;
 
   return (
     <ul className="menu">

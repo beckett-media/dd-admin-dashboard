@@ -3,14 +3,13 @@ import ContainerDefault from "~/components/layouts/ContainerDefault";
 import BlogTable from "~/components/shared/tables/BlogTable";
 
 import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { toggleDrawerMenu } from "~/store/app/action";
-import { getBlogListings } from "~/store/blogPost/action";
-import { getCurrentBlogPressList } from "~/store/blogPost/selectors";
+import { getPressListings } from "~/store/pressPost/action";
+import { getCurrentPressPostList } from "~/store/pressPost/selectors";
 import Authenticated from "~/repositories/AuthHoc";
 
 import { useRouter } from "next/router";
-import Router from "next/router";
 
 const BlogPage = (props) => {
   const dispatch = useDispatch();
@@ -18,28 +17,28 @@ const BlogPage = (props) => {
 
   useEffect(() => {
     dispatch(toggleDrawerMenu(false));
-    dispatch(getBlogListings());
+    dispatch(getPressListings());
   }, []);
+
 
   const { list } = props;
 
-  const newBlog = (event) => {
-    event.preventDefault();
-    router.push("/blogs/create-blog");
+  const newPress = () => {
+    router.push("/press/create-press");
   };
 
   return (
     <ContainerDefault title="Listings">
-      <HeaderDashboard title="Blogs" description="Due Dilly Blogs " />
+      <HeaderDashboard title="Press" description="Due Dilly Press " />
       <div className="ps-section__actions text-right my-5">
-        <a className="ps-btn success" onClick={newBlog}>
+        <a className="ps-btn success" onClick={newPress}>
           <i className="icon icon-plus mr-2" />
-          Create New Blog
+          Create New Press
         </a>
       </div>
       <section className="ps-items-listing">
         <div className="ps-section__content">
-          <BlogTable list={list || []} pageName="blogs" />
+          <BlogTable list={list || []} pageName="press"/>
         </div>
       </section>
     </ContainerDefault>
@@ -48,7 +47,7 @@ const BlogPage = (props) => {
 
 const connectStateToProps = (state) => {
   return {
-    list: getCurrentBlogPressList(state),
+    list: getCurrentPressPostList(state),
   };
 };
 

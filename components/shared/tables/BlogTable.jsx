@@ -2,18 +2,27 @@ import React from "react";
 import { TableActions } from "~/components/elements/basic/DropdownAction";
 import { Table, Pagination } from "antd";
 import {
-  getBlogPressListings,
-  updatePageNumberAction,
-  handleDeleteBlogPressRequest,
-  handleBlogEdit
-} from "~/store/blogPress/action";
-import { getBlogDeleteLoader } from "~/store/blogPress/selectors";
+  getBlogListings,
+  updateBlogPageNumberAction,
+  handleDeleteBlogRequest,
+  handleBlogEdit,
+} from "~/store/blogPost/action";
+
+import {
+  getPressListings,
+  updatePressPageNumberAction,
+  handleDeletePressRequest,
+  handlePressEdit,
+} from "~/store/pressPost/action";
+
+import { getBlogDeleteLoader } from "~/store/blogPost/selectors";
+import { getPressDeleteLoader } from "~/store/pressPost/selectors";
 import { CodeSandboxOutlined } from "@ant-design/icons";
 import { baseDomain } from "~/repositories/Repository";
 import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 
-const BlogItems = ({ list = [] }) => {
+const BlogItems = ({ list = [], pageName }) => {
   const tableData = list;
   let locale = {
     emptyText: (
@@ -24,8 +33,16 @@ const BlogItems = ({ list = [] }) => {
     ),
   };
   const dispatch = useDispatch();
-  let totalSize = useSelector((state) => state.blogPress.totalBlogs);
-  let pagination = useSelector((state) => state.blogPress.pagination);
+  let totalSize = useSelector((state) =>
+    pageName === "blogs"
+      ? state.blogPost.totalBlogs
+      : state.pressPost.totalPress
+  );
+  let pagination = useSelector((state) =>
+    pageName === "blogs"
+      ? state.blogPost.pagination
+      : state.pressPost.pagination
+  );
 
   const tableColumn = [
     {
@@ -60,11 +77,21 @@ const BlogItems = ({ list = [] }) => {
         <TableActions
           isPublic={item.isPublic}
           editDisabled={item.status === "sold"}
-          editAction={handleBlogEdit}
+          editAction={pageName === "blogs" ? handleBlogEdit : handlePressEdit}
           item={item}
-          deleteAction={handleDeleteBlogPressRequest}
-          loaderSelector={getBlogDeleteLoader}
-          editPath={`/blogs/edit-blog/${item.id}`}
+          deleteAction={
+            pageName === "blogs"
+              ? handleDeleteBlogRequest
+              : handleDeletePressRequest
+          }
+          loaderSelector={
+            pageName === "blogs" ? getBlogDeleteLoader : getPressDeleteLoader
+          }
+          editPath={
+            pageName === "blogs"
+              ? `/blogs/edit-blog/${item.id}`
+              : `/press/edit-press/${item.id}`
+          }
         />
       ),
     },
@@ -87,8 +114,13 @@ const BlogItems = ({ list = [] }) => {
         pageSize={2}
         onChange={(page) => {
           console.log(page);
-          dispatch(updatePageNumberAction(page));
-          dispatch(getBlogPressListings(page));
+          if (pageName === "blogs") {
+            dispatch(updateBlogPageNumberAction(page));
+            dispatch(getBlogListings(page));
+          } else {
+            dispatch(updatePressPageNumberAction(page));
+            dispatch(getPressListings(page));
+          }
         }}
       />
     </div>

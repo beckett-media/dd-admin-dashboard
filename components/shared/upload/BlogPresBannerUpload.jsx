@@ -22,7 +22,7 @@ const BlogPressBannerUpload = ({ setBannerImage, previousImage }) => {
   }, [previousImage]);
 
   return (
-    <div class="container">
+    <div className="container">
       <Upload
         accept="image/*"
         onChange={handleOnChange}

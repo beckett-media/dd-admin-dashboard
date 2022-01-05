@@ -6,23 +6,23 @@ import actionTypes from "./actionTypes";
 import { getPagination } from "./selectors";
 import BlogPressRepository from "~/repositories/BlogPressRespository";
 import {
-  setBlogPressListings,
-  handleBlogPressListLoading,
-  handleBlogPressDeleteLoading,
-  getBlogPressListings as getBlogPressMainListings,
+  setBlogListings,
+  handleBlogListLoading,
+  handleBlogDeleteLoading,
+  getBlogListings as getBlogMainListings,
 } from "./action";
 const log = console.log;
 
-function* getBlogPressListings() {
+function* getBlogListings() {
   try {
-    put(handleBlogPressListLoading(true));
+    put(handleBlogListLoading(true));
     const pagination = yield select(getPagination);
-    const blogPressList = yield call(
-      BlogPressRepository.blogPressList,
-      pagination
-    );
+    const blogPressList = yield call(BlogPressRepository.blogPressList, {
+      ...pagination,
+      type: "blog",
+    });
     yield put(
-      setBlogPressListings(
+      setBlogListings(
         pagination.page,
         blogPressList?.data?.blogsPress || [],
         blogPressList?.data?.totalDocs
@@ -31,32 +31,28 @@ function* getBlogPressListings() {
   } catch (error) {
     log("error:getProductListings ", error);
   } finally {
-    yield put(handleBlogPressListLoading(false));
+    yield put(handleBlogListLoading(false));
   }
 }
 
-function* deleteBlogPress({ blogId }) {
+function* deleteBlog({ blogId }) {
   try {
-    yield put(handleBlogPressDeleteLoading(true));
+    yield put(handleBlogDeleteLoading(true));
     yield call(BlogPressRepository.deleteBlogPress, blogId);
-    yield put(getBlogPressMainListings());
+    yield put(getBlogMainListings());
     notification.success({
       message: "Deleted",
-      description: "The blog/press has been successfully deleted",
+      description: "The blog has been successfully deleted",
     });
   } catch (error) {
     notification.error({ message: "Error", description: error + "" });
     log("error:deletePressBlog ", error);
   } finally {
-    yield put(handleBlogPressDeleteLoading(false));
+    yield put(handleBlogDeleteLoading(false));
   }
 }
 
 export default function* rootSaga() {
-  yield all([
-    takeLatest(actionTypes.GET_BLOG_PRESS_LIST_REQUEST, getBlogPressListings),
-  ]);
-  yield all([
-    takeLatest(actionTypes.HANDLE_DELETE_BLOG_PRESS_REQUEST, deleteBlogPress),
-  ]);
+  yield all([takeLatest(actionTypes.GET_BLOG_LIST_REQUEST, getBlogListings)]);
+  yield all([takeLatest(actionTypes.HANDLE_DELETE_BLOG_REQUEST, deleteBlog)]);
 }

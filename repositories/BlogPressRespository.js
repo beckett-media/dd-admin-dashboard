@@ -5,9 +5,9 @@ const routes = {
 };
 
 class BlogPressRespository {
-  async blogPressList({ page = 1, perPage = 10 }) {
+  async blogPressList({ page = 1, perPage = 10, type }) {
     try {
-      const url = `${baseUrl}${routes.blogPress}/${perPage}/${page}`;
+      const url = `${baseUrl}${routes.blogPress}/${perPage}/${page}/${type}`;
       const request = await Repository.get(url);
       return request.data;
     } catch (error) {
@@ -44,6 +44,7 @@ class BlogPressRespository {
           title: blogPress.title,
           data: blogPress.data,
           bannerImage: blogPress.bannerImage,
+          type: blogPress.type,
         }
       );
       return request.data;
