@@ -6,7 +6,7 @@ export const initState = {
   isListLoading: true,
   isPressDeleteLoading: false,
   selectedPress: null,
-  pagination: { page: 1, perPage: 2 },
+  pagination: { page: 1, perPage: 5 },
 };
 
 function reducer(state = initState, action) {
