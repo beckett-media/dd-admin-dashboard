@@ -122,7 +122,7 @@ const NewPressPage = () => {
               setTitle(e.target.value);
             }}
             showCount={true}
-            maxLength={40}
+            maxLength={60}
             placeholder="Title goes here..."
           />
         </div>

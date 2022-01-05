@@ -121,7 +121,7 @@ const EditBlogEditor = ({ blog, pageName }) => {
               setUpdatedBlog({ ...updatedBlog, title: e.target.value });
             }}
             showCount={true}
-            maxLength={40}
+            maxLength={60}
             placeholder="Title goes here..."
           />
         </div>
