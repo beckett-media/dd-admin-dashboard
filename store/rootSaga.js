@@ -9,6 +9,7 @@ import CommonSaga from "./common/saga";
 import OrderSaga from "./invoices/saga";
 import BlogPostSaga from "./blogPost/saga";
 import PressPostSaga from "./pressPost/saga";
+import Coupon from "./coupon/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -22,5 +23,6 @@ export default function* rootSaga() {
     StoreProductSaga(),
     BlogPostSaga(),
     PressPostSaga(),
+    Coupon(),
   ]);
 }

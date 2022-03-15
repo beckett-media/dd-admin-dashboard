@@ -10,6 +10,7 @@ import common from "./common/reducer";
 import orders from "./invoices/reducer";
 import blogPost from "./blogPost/reducer";
 import pressPost from "./pressPost/reducer";
+import coupon from "./coupon/reducer";
 
 export default combineReducers({
   auth,
@@ -22,4 +23,5 @@ export default combineReducers({
   storeProduct,
   blogPost,
   pressPost,
+  coupon
 });
