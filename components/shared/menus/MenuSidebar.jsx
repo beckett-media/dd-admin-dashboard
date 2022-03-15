@@ -8,7 +8,8 @@ import {
   PoweroffOutlined,
   UserOutlined,
   DingdingOutlined,
-  FormOutlined
+  FormOutlined,
+  DollarOutlined
 } from "@ant-design/icons";
 
 const MenuSidebar = () => {
@@ -30,6 +31,11 @@ const MenuSidebar = () => {
       text: "Blogs",
       url: "/blogs",
       icon: <DingdingOutlined style={{ fontSize: 20 }} />,
+    },
+    {
+      text: "Coupons",
+      url: "/coupons",
+      icon: <DollarOutlined style={{ fontSize: 20 }} />,
     },
     {
       text: "Press",

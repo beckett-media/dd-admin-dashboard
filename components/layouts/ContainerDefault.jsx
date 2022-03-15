@@ -13,6 +13,7 @@ import {
   UserOutlined,
   DingdingOutlined,
   FormOutlined,
+  DollarOutlined
 } from "@ant-design/icons";
 import CircleBg from "../../public/img/circle_bg.png";
 import PixelBg from "../../public/img/pixel_bg.png";
@@ -51,6 +52,11 @@ const ContainerDefault = ({ children, title }) => {
       text: "Press",
       url: "/press",
       icon: <FormOutlined style={{ fontSize: 20 }} />,
+    },
+    {
+      text: "Coupons",
+      url: "/coupons",
+      icon: <DollarOutlined style={{ fontSize: 20 }} />,
     },
     {
       text: "Logout",
