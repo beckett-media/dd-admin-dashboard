@@ -15,6 +15,7 @@ class CouponRepository {
     }
   }
   async createCoupon(coupon) {
+    console.log(coupon, "In api");
     try {
       const request = await Repository.post(
         `${baseUrl}${routes.coupon}`,
