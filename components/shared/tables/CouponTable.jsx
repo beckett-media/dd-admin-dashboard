@@ -24,7 +24,8 @@ const BlogItems = ({ list = [], pageName }) => {
     ),
   };
   const dispatch = useDispatch();
-  let totalSize = useSelector((state) => state.coupons.totalCoupon);
+  let totalSize = useSelector((state) => state.coupon.totalCoupon);
+  let pagination = useSelector((state) => state.coupon.pagination);
 
   const tableColumn = [
     {
@@ -39,6 +40,42 @@ const BlogItems = ({ list = [], pageName }) => {
             {record.id}
           </small>
           <p>{record.title}</p>
+        </>
+      ),
+    },
+    {
+      title: "Code",
+      dataIndex: "Code",
+      rowKey: "Code",
+      key: "Code",
+      width: "25%",
+      render: (text, record) => (
+        <>
+          <p>{record.code}</p>
+        </>
+      ),
+    },
+    {
+      title: "Percentage",
+      dataIndex: "Percentage",
+      rowKey: "Percentage",
+      key: "Percentage",
+      width: "25%",
+      render: (text, record) => (
+        <>
+          <p>{record.percentage}</p>
+        </>
+      ),
+    },
+    {
+      title: "Is Active",
+      dataIndex: "isActive",
+      rowKey: "isActive",
+      key: "isActive",
+      width: "25%",
+      render: (text, record) => (
+        <>
+          <p>{record.isActive}</p>
         </>
       ),
     },
@@ -57,8 +94,8 @@ const BlogItems = ({ list = [], pageName }) => {
       key: "menu",
       render: (text, item) => (
         <TableActions
-          isPublic={item.isPublic}
-          //   editDisabled={item.status === "sold"}
+          isPublic={true}
+          editDisabled={item.isActive === "false"}
           editAction={handleCouponEdit}
           item={item}
           deleteAction={handleDeleteCouponRequest}
@@ -78,8 +115,7 @@ const BlogItems = ({ list = [], pageName }) => {
         pagination={false}
         rowKey={(record) => record.id || record._id}
       />
-      {console.log("totalSize")}
-      {console.log(totalSize)}
+
       <Pagination
         current={pagination.page}
         total={totalSize}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ContainerDefault from "~/components/layouts/ContainerDefault";
-import BlogTable from "~/components/shared/tables/BlogTable";
+import CouponTable from "~/components/shared/tables/CouponTable";
 
 import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
 import { connect, useDispatch, useSelector } from "react-redux";
@@ -39,7 +39,7 @@ const CouponPage = (props) => {
       </div>
       <section className="ps-items-listing">
         <div className="ps-section__content">
-          <BlogTable list={list || []} pageName="Coupons" />
+          <CouponTable list={list || []} pageName="Promos" />
         </div>
       </section>
     </ContainerDefault>
