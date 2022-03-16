@@ -30,7 +30,7 @@ const CouponPage = (props) => {
 
   return (
     <ContainerDefault title="Listings">
-      <HeaderDashboard title="Coupons" description="Due Dilly Coupon" />
+      <HeaderDashboard title="Promos" description="Due Dilly Promos" />
       <div className="ps-section__actions text-right my-5">
         <a className="ps-btn success" onClick={newCoupon}>
           <i className="icon icon-plus mr-2" />
