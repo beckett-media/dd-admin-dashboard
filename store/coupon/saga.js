@@ -6,7 +6,7 @@ import actionTypes from "./actionTypes";
 import { getPagination } from "./selectors";
 import CouponRepository from "~/repositories/CouponRepository";
 import {
-  setCouponListings,
+  setCouponLists,
   handleCouponListLoading,
   handleCouponDeleteLoading,
   getCouponListings as getCouponMainListings,
@@ -22,7 +22,7 @@ function* getCouponListings() {
       type: "coupon",
     });
     yield put(
-      setCouponListings(
+      setCouponLists(
         pagination.page,
         couponList?.data?.list || [],
         couponList?.data?.totalCoupons
