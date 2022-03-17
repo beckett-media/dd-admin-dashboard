@@ -24,12 +24,12 @@ function* getCouponListings() {
     yield put(
       setCouponListings(
         pagination.page,
-        couponList?.data?.coupon || [],
-        // couponList?.data?.totalDocs
+        couponList?.data?.list || [],
+        couponList?.data?.totalCoupons
       )
     );
   } catch (error) {
-    log("error:getProductListings ", error);
+    log("error:getCouponListings ", error);
   } finally {
     yield put(handleCouponListLoading(false));
   }
@@ -53,6 +53,10 @@ function* deleteCoupon({ couponId }) {
 }
 
 export default function* rootSaga() {
-  yield all([takeLatest(actionTypes.GET_COUPON_LIST_REQUEST, getCouponListings)]);
-  yield all([takeLatest(actionTypes.HANDLE_DELETE_COUPON_REQUEST, deleteCoupon)]);
+  yield all([
+    takeLatest(actionTypes.GET_COUPON_LIST_REQUEST, getCouponListings),
+  ]);
+  yield all([
+    takeLatest(actionTypes.HANDLE_DELETE_COUPON_REQUEST, deleteCoupon),
+  ]);
 }
