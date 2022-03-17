@@ -25,7 +25,7 @@ import { useRouter } from "next/router";
 
 import Router from "next/router";
 
-const NewCoupon = (props) => {
+const EditCoupon = ({ coupon }) => {
   const formRef = useRef();
   const router = useRouter();
   const checkRef = useRef();
@@ -40,15 +40,17 @@ const NewCoupon = (props) => {
   };
   const handleCouponSubmit = async (values) => {
     try {
-      const data = await CouponRepository.createCoupon({ values });
+      const data = await CouponRepository.editUpdateCoupon({ values });
       notification.success({
-        message: "Couponn Created",
+        message: "Coupon Updated",
         description: data.title,
       });
       Router.push("/coupons");
     } catch (error) {
       notification.error({ message: "Error", description: error });
     }
+
+    // dispatch(createNewStore(values, isEdit, true));
   };
 
   const dispatch = useDispatch();
@@ -56,10 +58,10 @@ const NewCoupon = (props) => {
     dispatch(toggleDrawerMenu(false));
   }, []);
   return (
-    <ContainerDefault title={"Create new Promo for discount"}>
+    <ContainerDefault title={"Edit  Promo for discount"}>
       <HeaderDashboard
-        title={"Create Promos for user"}
-        description={`Due Dilly Create New Promos`}
+        title={"Edit Promo for user"}
+        description={`Due Dilly Edit Promos`}
       />
       <section className="ps-new-item">
         <Form
@@ -107,6 +109,7 @@ const NewCoupon = (props) => {
                           showCount={true}
                           onPressEnter={(e) => e.preventDefault()}
                           maxLength={20}
+                          value={coupon.title}
                           className="form-control"
                           type="text"
                           placeholder="Enter Promo name"
@@ -135,6 +138,7 @@ const NewCoupon = (props) => {
                           showCount={true}
                           onPressEnter={(e) => e.preventDefault()}
                           maxLength={20}
+                          value={coupon.code}
                           className="form-control"
                           type="text"
                           size="large"
@@ -161,6 +165,7 @@ const NewCoupon = (props) => {
                           showCount={true}
                           onPressEnter={(e) => e.preventDefault()}
                           maxLength={20}
+                          value={coupon.percentage}
                           className="form-control"
                           type="number"
                           placeholder="Enter Promo Code Percentage"
@@ -191,7 +196,7 @@ const NewCoupon = (props) => {
                   <Col>
                     <div>
                       <button className="ps-btn success" onClick={onSavePublic}>
-                        Create
+                        Update
                       </button>
                     </div>
                   </Col>
@@ -205,67 +210,10 @@ const NewCoupon = (props) => {
   );
 };
 
-//   return (
-//     <ContainerDefault title="New Blog">
-//       <HeaderDashboard
-//         title="New Blog"
-//         description="Write from your heart in Due Dilly Blog"
-//       />
-//       <Col xs={24} sm={12} md={12}>
-//         <div className="form-group">
-//           <Input.TextArea
-//             style={{ width: "100%" }}
-//             value={title}
-//             className="form-control"
-//             type="text"
-//             onChange={(e) => {
-//               setTitle(e.target.value);
-//             }}
-//             showCount={true}
-//             maxLength={60}
-//             placeholder="Title goes here..."
-//           />
-//         </div>
-//       </Col>
-//       <BlogPresBannerUpload setBannerImage={setBannerImage} />
-//       <Editor
-//         init={init}
-//         onEditorChange={setBlogPressData}
-//         apiKey="7do9gdezf8u4fuujriwhqjhevhjixd1v0yuq2zy97gzt8o13"
-//       />
-//       <span>
-//         <a
-//           className="ps-btn"
-//           onClick={async () => {
-//             try {
-//               const { data } = await blogPressRepo.createBlogPress({
-//                 title,
-//                 bannerImage,
-//                 data: blogPressData,
-//                 type: "blog",
-//               });
-//               notification.success({
-//                 message: "Published",
-//                 description: data.title,
-//               });
-//               Router.push("/blogs");
-//             } catch (error) {
-//               notification.error({ message: "Error", description: error });
-//             }
-//           }}
-//         >
-//           Save Promo
-//         </a>
-//       </span>
-//     </ContainerDefault>
-//   );
-// };
-
 const connectStateToProps = (state) => {
   return {
     userInfo: getUserInfo(state),
   };
 };
 
-// export default connect(connectStateToProps)(Authenticated(SettingsPage));
-export default connect(connectStateToProps)(AuthHoc(NewCoupon));
+export default connect(connectStateToProps)(AuthHoc(EditCoupon));
