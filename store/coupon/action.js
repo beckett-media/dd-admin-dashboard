@@ -4,7 +4,7 @@ export function getCouponListings() {
   return { type: actionTypes.GET_COUPON_LIST_REQUEST };
 }
 
-export function setCouponListings(page, list, totalCoupon) {
+export function setCouponLists(page, list, totalCoupon) {
   return { type: actionTypes.SET_COUPON_LIST, page, list, totalCoupon };
 }
 
