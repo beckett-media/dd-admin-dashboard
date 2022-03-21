@@ -25,7 +25,7 @@ function* getCouponListings() {
       setCouponLists(
         pagination.page,
         couponList?.data?.promos || [],
-        couponList?.data?.totalCoupons
+        couponList?.data?.totalCoupon
       )
     );
   } catch (error) {
