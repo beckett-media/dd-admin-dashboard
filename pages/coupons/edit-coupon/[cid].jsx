@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
 
 import CouponRepository from "~/repositories/CouponRepository";
 import EditCoupon from "~/components/elements/basic/EditCoupon";

@@ -1,25 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
 import ContainerDefault from "~/components/layouts/ContainerDefault";
-import FormAccountSettings from "~/components/shared/forms/FormAccountSettings";
 import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
 import { connect, useDispatch } from "react-redux";
 import { toggleDrawerMenu } from "~/store/app/action";
-import BlogPresBannerUpload from "~/components/shared/upload/BlogPresBannerUpload";
 import { getUserInfo } from "~/store/auth/selectors";
-import Authenticated from "~/repositories/AuthHoc";
-import { Editor } from "@tinymce/tinymce-react";
 import CouponRepository from "~/repositories/CouponRepository";
 import {
   Input,
   Form,
   Row,
-  Select,
-  Spin,
   Col,
   InputNumber,
   notification,
 } from "antd";
-import { PercentageOutlined } from "@ant-design/icons";
 import AuthHoc from "~/repositories/AuthHoc";
 import { useRouter } from "next/router";
 

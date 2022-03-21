@@ -10,7 +10,6 @@ import { getCurrentCouponList } from "~/store/coupon/selectors";
 import Authenticated from "~/repositories/AuthHoc";
 
 import { useRouter } from "next/router";
-import Router from "next/router";
 
 const CouponPage = (props) => {
   const dispatch = useDispatch();
