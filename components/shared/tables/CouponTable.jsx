@@ -33,7 +33,6 @@ const BlogItems = ({ list = [], pageName }) => {
       dataIndex: "Name",
       rowKey: "Name",
       key: "Name",
-      width: "25%",
       render: (text, record) => (
         <>
           <small className="text-secondary" style={{ opacity: 0.5 }}>
@@ -48,7 +47,6 @@ const BlogItems = ({ list = [], pageName }) => {
       dataIndex: "Code",
       rowKey: "Code",
       key: "Code",
-      width: "25%",
       render: (text, record) => (
         <>
           <p>{record.promoCode}</p>
@@ -60,10 +58,9 @@ const BlogItems = ({ list = [], pageName }) => {
       dataIndex: "Percentage",
       rowKey: "Percentage",
       key: "Percentage",
-      width: "25%",
       render: (text, record) => (
         <>
-          <p>{record.percentage}</p>
+          <p>{record.percentage}%</p>
         </>
       ),
     },
@@ -72,7 +69,6 @@ const BlogItems = ({ list = [], pageName }) => {
       dataIndex: "isActive",
       rowKey: "isActive",
       key: "isActive",
-      width: "25%",
       render: (text, record) => (
         <>
           <p>{record.isActive}</p>
@@ -100,7 +96,7 @@ const BlogItems = ({ list = [], pageName }) => {
           item={item}
           deleteAction={handleDeleteCouponRequest}
           loaderSelector={getCouponDeleteLoader}
-          editPath={`/coupons/edit-coupon/${item.id}`}
+          editPath={`/coupons/edit-coupon/${item._id}`}
         />
       ),
     },
