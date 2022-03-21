@@ -26,7 +26,7 @@ function reducer(state = initState, action) {
         },
         totalCoupon: action.totalCoupon,
       };
-    case actionTypes.UPDATE_UPDATE_PAGE_NUMBER:
+    case actionTypes.UPDATE_COUPON_PAGE_NUMBER:
       return {
         ...state,
         pagination: {

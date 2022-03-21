@@ -15,7 +15,7 @@ const CouponEdit = () => {
     async function getCouponFull() {
       try {
         const coupon = await CouponRepository.getCouponFull(query.cid);
-        setCoupon(coupon.data);
+        setCoupon(coupon.data.promo);
       } catch (error) {
         console.log(error);
       } finally {

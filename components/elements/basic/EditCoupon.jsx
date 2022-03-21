@@ -29,29 +29,17 @@ const EditCoupon = ({ coupon }) => {
   const formRef = useRef();
   const router = useRouter();
   const checkRef = useRef();
-
+  const [promoData, setPromoData] = useState();
   const onSavePublic = (event) => {
     event.preventDefault();
     event.stopPropagation();
     formRef.current.setFieldsValue({ isPublic: true });
-    console.log(formRef.current);
     if (checkRef.current) checkRef.current(() => formRef.current.submit());
     else formRef.current.submit();
   };
-  const handleCouponSubmit = async (values) => {
-    try {
-      const data = await CouponRepository.editUpdateCoupon({ values });
-      notification.success({
-        message: "Coupon Updated",
-        description: data.title,
-      });
-      Router.push("/coupons");
-    } catch (error) {
-      notification.error({ message: "Error", description: error });
-    }
-
-    // dispatch(createNewStore(values, isEdit, true));
-  };
+  useEffect(() => {
+    setPromoData(coupon);
+  }, [coupon]);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -63,149 +51,80 @@ const EditCoupon = ({ coupon }) => {
         title={"Edit Promo for user"}
         description={`Due Dilly Edit Promos`}
       />
-      <section className="ps-new-item">
-        <Form
-          ref={formRef}
-          className="ps-form ps-form--new-product"
-          onFinish={handleCouponSubmit}
-          scrollToFirstError={true}
-          layout="vertical"
+
+      <div className="form-group">
+        <p>Promo Title</p>
+
+        <Input.TextArea
+          style={{ width: "100%" }}
+          className="form-control"
+          type="text"
+          value={promoData?.name}
+          onChange={(e) => {
+            setPromoData({ ...promoData, name: e.target.value });
+          }}
+          showCount={true}
+          maxLength={20}
+          placeholder="Name goes here..."
+        />
+      </div>
+      <div className="form-group">
+        <p>Promo Code</p>
+        <Input.TextArea
+          style={{ width: "100%" }}
+          className="form-control"
+          type="text"
+          value={promoData?.promoCode}
+          onChange={(e) => {
+            setPromoData({ ...promoData, promoCode: e.target.value });
+          }}
+          showCount={true}
+          maxLength={20}
+          placeholder="Promo Code goes here..."
+        />
+      </div>
+      <div className="form-group">
+        <p>Promo Percentage</p>
+        <InputNumber
+          style={{ width: "100%" }}
+          className="form-control"
+          prefix="$"
+          rows={1}
+          type="number"
+          value={promoData?.percentage}
+          onChange={(e) => {
+            setPromoData({ ...promoData, percentage: e });
+          }}
+          showCount={true}
+          maxLength={20}
+          placeholder="Percentage goes here..."
+        />
+      </div>
+      <span>
+        <a
+          className="ps-btn"
+          onClick={async () => {
+            try {
+              const { data } = await CouponRepository.editUpdateCoupon({
+                name: promoData.name,
+                id: promoData._id,
+                promoCode: promoData.promoCode,
+                percentage: promoData.percentage,
+              });
+
+              notification.success({
+                message: "Updated",
+                description: data.name,
+              });
+              Router.push("/coupons");
+            } catch (error) {
+              notification.error({ message: "Error", description: error });
+            }
+          }}
         >
-          <div className="ps-form__content">
-            <div className="row">
-              <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
-                <figure className="ps-block--form-box">
-                  <div className="ps-block__content">
-                    <div style={{ display: "none" }} className="form-group">
-                      <Form.Item name="_id" rules={[{ required: false }]}>
-                        <Input className="form-control" />
-                      </Form.Item>
-                    </div>
-
-                    <div style={{ display: "none" }} className="form-group">
-                      <Form.Item name="isPublic" rules={[{ required: false }]}>
-                        <Input className="form-control" />
-                      </Form.Item>
-                    </div>
-
-                    <div className="form-group">
-                      <Form.Item
-                        label="Promo Title"
-                        name="title"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please enter a Promo title/name.",
-                          },
-                          {
-                            max: 20,
-                            message:
-                              "The title can be a maximum of 20 characters",
-                          },
-                        ]}
-                      >
-                        <Input.TextArea
-                          rows={1}
-                          showCount={true}
-                          onPressEnter={(e) => e.preventDefault()}
-                          maxLength={20}
-                          value={coupon.title}
-                          className="form-control"
-                          type="text"
-                          placeholder="Enter Promo name"
-                        />
-                      </Form.Item>
-                    </div>
-
-                    <div className="form-group">
-                      <Form.Item
-                        label="Promo Code"
-                        name="code"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please enter a Promo Code.",
-                          },
-                          {
-                            max: 20,
-                            message:
-                              "The Promo Code can be a maximum of 20 characters",
-                          },
-                        ]}
-                      >
-                        <Input.TextArea
-                          rows={1}
-                          showCount={true}
-                          onPressEnter={(e) => e.preventDefault()}
-                          maxLength={20}
-                          value={coupon.code}
-                          className="form-control"
-                          type="text"
-                          size="large"
-                          placeholder="Enter Promo Code"
-                        />
-                      </Form.Item>
-                    </div>
-                    <div className="form-group">
-                      <Form.Item
-                        label="Promo Percentage"
-                        name="percentage"
-                        rules={[
-                          {
-                            required: true,
-                            message:
-                              "Please enter a Promo Percentage for Discount.",
-                          },
-                        ]}
-                      >
-                        <InputNumber
-                          style={{ width: "100%" }}
-                          prefix="$"
-                          rows={1}
-                          showCount={true}
-                          onPressEnter={(e) => e.preventDefault()}
-                          maxLength={20}
-                          value={coupon.percentage}
-                          className="form-control"
-                          type="number"
-                          placeholder="Enter Promo Code Percentage"
-                        />
-                      </Form.Item>
-                    </div>
-                  </div>
-                </figure>
-              </div>
-            </div>
-
-            <Row align="middle" justify="space-between">
-              <Col>
-                <div className="ps-form__bottom">
-                  <button
-                    onClick={(event) => {
-                      event.preventDefault();
-                      router.replace("/coupons");
-                    }}
-                    className="ps-btn ps-btn--gray"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </Col>
-              <Col>
-                <Row align="middle">
-                  <Col>
-                    <div>
-                      <button className="ps-btn success" onClick={onSavePublic}>
-                        Update
-                      </button>
-                    </div>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </div>
-        </Form>
-      </section>
+          Update
+        </a>
+      </span>
     </ContainerDefault>
   );
 };
