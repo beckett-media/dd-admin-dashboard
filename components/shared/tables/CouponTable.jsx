@@ -39,7 +39,7 @@ const BlogItems = ({ list = [], pageName }) => {
           <small className="text-secondary" style={{ opacity: 0.5 }}>
             {record.id}
           </small>
-          <p>{record.title}</p>
+          <p>{record.name}</p>
         </>
       ),
     },
@@ -51,7 +51,7 @@ const BlogItems = ({ list = [], pageName }) => {
       width: "25%",
       render: (text, record) => (
         <>
-          <p>{record.code}</p>
+          <p>{record.promoCode}</p>
         </>
       ),
     },

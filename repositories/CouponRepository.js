@@ -1,13 +1,14 @@
 import Repository, { baseUrl, getError } from "./Repository";
 
 const routes = {
-  coupon: "/coupons",
+  coupon: "/promo",
 };
 
 class CouponRepository {
   async CouponList({ page = 1, perPage = 10, type }) {
     try {
-      const url = `${baseUrl}${routes.coupon}/${perPage}/${page}/${type}`;
+      // const url = `${baseUrl}${routes.coupon}/${perPage}/${page}/${type}`;
+      const url = `${baseUrl}${routes.coupon}`;
       const request = await Repository.get(url);
       return request.data;
     } catch (error) {
@@ -38,12 +39,12 @@ class CouponRepository {
   async editUpdateCoupon(coupon) {
     try {
       const couponId = coupon.id;
-      const request = await Repository.put(
+      const request = await Repository.patch(
         `${baseUrl}${routes.coupon}/${couponId}`,
         {
-          title: coupon.title,
-          code: coupon.code,
-          percent: coupon.percent,
+          name: coupon.name,
+          promoCode: coupon.promoCode,
+          percentage: coupon.percentage,
         }
       );
       return request.data;

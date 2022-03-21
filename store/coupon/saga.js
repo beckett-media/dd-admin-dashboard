@@ -19,12 +19,12 @@ function* getCouponListings() {
     const pagination = yield select(getPagination);
     const couponList = yield call(CouponRepository.CouponList, {
       ...pagination,
-      type: "coupon",
+      type: "promo",
     });
     yield put(
       setCouponLists(
         pagination.page,
-        couponList?.data?.list || [],
+        couponList?.data?.promos || [],
         couponList?.data?.totalCoupons
       )
     );

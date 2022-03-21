@@ -20,10 +20,10 @@ export function updateCouponPageNumberAction(page) {
   return { type: actionTypes.UPDATE_COUPON_PAGE_NUMBER, page };
 }
 
-export function handleDeleteCouponRequest({ id }) {
+export function handleDeleteCouponRequest({ _id }) {
   return {
     type: actionTypes.HANDLE_DELETE_COUPON_REQUEST,
-    couponId: id,
+    couponId: _id,
   };
 }
 

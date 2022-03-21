@@ -33,17 +33,15 @@ const NewCoupon = (props) => {
   const onSavePublic = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    formRef.current.setFieldsValue({ isPublic: true });
-    console.log(formRef.current);
     if (checkRef.current) checkRef.current(() => formRef.current.submit());
     else formRef.current.submit();
   };
   const handleCouponSubmit = async (values) => {
     try {
-      const data = await CouponRepository.createCoupon({ values });
+      const data = await CouponRepository.createCoupon({ ...values });
       notification.success({
-        message: "Couponn Created",
-        description: data.title,
+        message: "Coupon Created",
+        description: data.name,
       });
       Router.push("/coupons");
     } catch (error) {
@@ -89,7 +87,7 @@ const NewCoupon = (props) => {
                     <div className="form-group">
                       <Form.Item
                         label="Promo Title"
-                        name="title"
+                        name="name"
                         rules={[
                           {
                             required: true,
@@ -117,7 +115,7 @@ const NewCoupon = (props) => {
                     <div className="form-group">
                       <Form.Item
                         label="Promo Code"
-                        name="code"
+                        name="promoCode"
                         rules={[
                           {
                             required: true,
