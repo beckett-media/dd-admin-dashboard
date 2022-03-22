@@ -33,7 +33,7 @@ const MenuSidebar = () => {
       icon: <DingdingOutlined style={{ fontSize: 20 }} />,
     },
     {
-      text: "Coupons",
+      text: "Promos",
       url: "/coupons",
       icon: <DollarOutlined style={{ fontSize: 20 }} />,
     },

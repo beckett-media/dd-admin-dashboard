@@ -1,12 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
+import { connect, useDispatch } from "react-redux";
+import { Input, InputNumber, notification } from "antd";
+
+import AuthHoc from "~/repositories/AuthHoc";
 import ContainerDefault from "~/components/layouts/ContainerDefault";
 import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
-import { connect, useDispatch } from "react-redux";
 import { toggleDrawerMenu } from "~/store/app/action";
 import { getUserInfo } from "~/store/auth/selectors";
 import CouponRepository from "~/repositories/CouponRepository";
-import { Input, InputNumber, notification } from "antd";
-import AuthHoc from "~/repositories/AuthHoc";
 
 import Router from "next/router";
 
@@ -90,7 +91,7 @@ const EditCoupon = ({ coupon }) => {
 
               notification.success({
                 message: "Updated",
-                description: data.name,
+                description: data.promo.name,
               });
               Router.push("/coupons");
             } catch (error) {
@@ -105,10 +106,4 @@ const EditCoupon = ({ coupon }) => {
   );
 };
 
-const connectStateToProps = (state) => {
-  return {
-    userInfo: getUserInfo(state),
-  };
-};
-
-export default connect(connectStateToProps)(AuthHoc(EditCoupon));
+export default AuthHoc(EditCoupon);

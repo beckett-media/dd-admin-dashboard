@@ -13,7 +13,7 @@ import { CodeSandboxOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 
-const BlogItems = ({ list = [], pageName }) => {
+const CouponItems = ({ list = [] }) => {
   const tableData = list;
   let locale = {
     emptyText: (
@@ -33,10 +33,10 @@ const BlogItems = ({ list = [], pageName }) => {
       dataIndex: "Name",
       rowKey: "Name",
       key: "Name",
-      render: (text, record) => (
+      render: (_text, record) => (
         <>
           <small className="text-secondary" style={{ opacity: 0.5 }}>
-            {record.id}
+            {record._id}
           </small>
           <p>{record.name}</p>
         </>
@@ -47,7 +47,7 @@ const BlogItems = ({ list = [], pageName }) => {
       dataIndex: "Code",
       rowKey: "Code",
       key: "Code",
-      render: (text, record) => (
+      render: (_text, record) => (
         <>
           <p>{record.promoCode}</p>
         </>
@@ -58,7 +58,7 @@ const BlogItems = ({ list = [], pageName }) => {
       dataIndex: "Percentage",
       rowKey: "Percentage",
       key: "Percentage",
-      render: (text, record) => (
+      render: (_text, record) => (
         <>
           <p>{record.percentage}%</p>
         </>
@@ -69,7 +69,7 @@ const BlogItems = ({ list = [], pageName }) => {
       dataIndex: "isActive",
       rowKey: "isActive",
       key: "isActive",
-      render: (text, record) => (
+      render: (_text, record) => (
         <>
           <p>{record.isActive}</p>
         </>
@@ -81,14 +81,14 @@ const BlogItems = ({ list = [], pageName }) => {
       rowKey: "Date",
       dataIndex: "Date",
       key: "Date",
-      render: (text, item) => dayjs(item.updatedAt).format("MM-DD-YYYY"),
+      render: (_text, item) => dayjs(item.updatedAt).format("MM-DD-YYYY"),
     },
     {
       title: "",
       rowKey: "menu",
       dataIndex: "menu",
       key: "menu",
-      render: (text, item) => (
+      render: (_text, item) => (
         <TableActions
           isPublic={true}
           editDisabled={item.isActive === "false"}
@@ -125,4 +125,4 @@ const BlogItems = ({ list = [], pageName }) => {
   );
 };
 
-export default BlogItems;
+export default CouponItems;

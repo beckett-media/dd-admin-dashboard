@@ -12,10 +12,6 @@ export function handleCouponListLoading(value) {
   return { type: actionTypes.TOOGLE_COUPON_LIST_LOADER, value };
 }
 
-// export function handleSelectedCouponGet(value) {
-//   return { type: actionTypes.HANDLE_SELECTED_COUPON_REQUEST, value };
-// }
-
 export function updateCouponPageNumberAction(page) {
   return { type: actionTypes.UPDATE_COUPON_PAGE_NUMBER, page };
 }

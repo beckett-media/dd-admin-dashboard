@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { connect, useDispatch } from "react-redux";
+
 import ContainerDefault from "~/components/layouts/ContainerDefault";
 import CouponTable from "~/components/shared/tables/CouponTable";
-
 import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
-import { connect, useDispatch, useSelector } from "react-redux";
 import { toggleDrawerMenu } from "~/store/app/action";
 import { getCouponListings } from "~/store/coupon/action";
 import { getCurrentCouponList } from "~/store/coupon/selectors";
 import Authenticated from "~/repositories/AuthHoc";
-
-import { useRouter } from "next/router";
 
 const CouponPage = (props) => {
   const dispatch = useDispatch();
@@ -28,7 +27,7 @@ const CouponPage = (props) => {
   };
 
   return (
-    <ContainerDefault title="Listings">
+    <ContainerDefault title="Promos Listing">
       <HeaderDashboard title="Promos" description="Due Dilly Promos" />
       <div className="ps-section__actions text-right my-5">
         <a className="ps-btn success" onClick={newCoupon}>

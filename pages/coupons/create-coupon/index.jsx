@@ -1,22 +1,15 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import { connect, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import Router from "next/router";
+import { Input, Form, Row, Col, InputNumber, notification } from "antd";
+
 import ContainerDefault from "~/components/layouts/ContainerDefault";
 import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
-import { connect, useDispatch } from "react-redux";
 import { toggleDrawerMenu } from "~/store/app/action";
 import { getUserInfo } from "~/store/auth/selectors";
 import CouponRepository from "~/repositories/CouponRepository";
-import {
-  Input,
-  Form,
-  Row,
-  Col,
-  InputNumber,
-  notification,
-} from "antd";
 import AuthHoc from "~/repositories/AuthHoc";
-import { useRouter } from "next/router";
-
-import Router from "next/router";
 
 const NewCoupon = (props) => {
   const formRef = useRef();
@@ -196,67 +189,4 @@ const NewCoupon = (props) => {
   );
 };
 
-//   return (
-//     <ContainerDefault title="New Blog">
-//       <HeaderDashboard
-//         title="New Blog"
-//         description="Write from your heart in Due Dilly Blog"
-//       />
-//       <Col xs={24} sm={12} md={12}>
-//         <div className="form-group">
-//           <Input.TextArea
-//             style={{ width: "100%" }}
-//             value={title}
-//             className="form-control"
-//             type="text"
-//             onChange={(e) => {
-//               setTitle(e.target.value);
-//             }}
-//             showCount={true}
-//             maxLength={60}
-//             placeholder="Title goes here..."
-//           />
-//         </div>
-//       </Col>
-//       <BlogPresBannerUpload setBannerImage={setBannerImage} />
-//       <Editor
-//         init={init}
-//         onEditorChange={setBlogPressData}
-//         apiKey="7do9gdezf8u4fuujriwhqjhevhjixd1v0yuq2zy97gzt8o13"
-//       />
-//       <span>
-//         <a
-//           className="ps-btn"
-//           onClick={async () => {
-//             try {
-//               const { data } = await blogPressRepo.createBlogPress({
-//                 title,
-//                 bannerImage,
-//                 data: blogPressData,
-//                 type: "blog",
-//               });
-//               notification.success({
-//                 message: "Published",
-//                 description: data.title,
-//               });
-//               Router.push("/blogs");
-//             } catch (error) {
-//               notification.error({ message: "Error", description: error });
-//             }
-//           }}
-//         >
-//           Save Promo
-//         </a>
-//       </span>
-//     </ContainerDefault>
-//   );
-// };
-
-const connectStateToProps = (state) => {
-  return {
-    userInfo: getUserInfo(state),
-  };
-};
-
-// export default connect(connectStateToProps)(Authenticated(SettingsPage));
-export default connect(connectStateToProps)(AuthHoc(NewCoupon));
+export default AuthHoc(NewCoupon);
