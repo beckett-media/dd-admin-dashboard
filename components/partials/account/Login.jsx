@@ -103,11 +103,11 @@ class Login extends Component {
                           },
                         ]}
                       >
-                        <Input
-                          className="form-control"
-                          type="password"
-                          placeholder="Enter your secure password"
-                        />
+                          <Input.Password
+                            className="form-control"
+                            type="password"
+                            placeholder="Enter your secure password"
+                          />
                       </Form.Item>
                     </Col>
                     <Col xs={24} align="middle" justify="center">
