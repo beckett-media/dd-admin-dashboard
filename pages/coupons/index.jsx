@@ -1,0 +1,53 @@
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { connect, useDispatch } from "react-redux";
+
+import ContainerDefault from "~/components/layouts/ContainerDefault";
+import CouponTable from "~/components/shared/tables/CouponTable";
+import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
+import { toggleDrawerMenu } from "~/store/app/action";
+import { getCouponListings } from "~/store/coupon/action";
+import { getCurrentCouponList } from "~/store/coupon/selectors";
+import Authenticated from "~/repositories/AuthHoc";
+
+const CouponPage = (props) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  useEffect(() => {
+    dispatch(toggleDrawerMenu(false));
+    dispatch(getCouponListings());
+  }, []);
+
+  const { list } = props;
+
+  const newCoupon = (event) => {
+    event.preventDefault();
+    router.push("/coupons/create-coupon");
+  };
+
+  return (
+    <ContainerDefault title="Promos Listing">
+      <HeaderDashboard title="Promos" description="Due Dilly Promos" />
+      <div className="ps-section__actions text-right my-5">
+        <a className="ps-btn success" onClick={newCoupon}>
+          <i className="icon icon-plus mr-2" />
+          Create Promo Code
+        </a>
+      </div>
+      <section className="ps-items-listing">
+        <div className="ps-section__content">
+          <CouponTable list={list || []} pageName="Promos" />
+        </div>
+      </section>
+    </ContainerDefault>
+  );
+};
+
+const connectStateToProps = (state) => {
+  return {
+    list: getCurrentCouponList(state),
+  };
+};
+
+export default connect(connectStateToProps)(Authenticated(CouponPage));
