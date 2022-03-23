@@ -63,6 +63,7 @@ const EditCoupon = ({ coupon }) => {
       <div className="form-group">
         <p>Promo Percentage</p>
         <InputNumber
+          disabled
           style={{ width: "100%" }}
           className="form-control"
           prefix="$"
