@@ -3,25 +3,19 @@ import Head from "next/head";
 import FooterCopyright from "~/components/shared/footers/FooterCopyright";
 import MenuSidebar from "~/components/shared/menus/MenuSidebar";
 import WidgetUserWelcome from "~/components/shared/widgets/WidgetUserWelcome";
-import { Header } from "antd/lib/layout/layout";
-import LogoWhite from "../../public/img/logo_white.png";
-import { Dropdown, Menu, Row } from "antd";
+import {Header} from "antd/lib/layout/layout";
+import {Dropdown, Menu, Row} from "antd";
 import {
   PoweroffOutlined,
   CodeSandboxOutlined,
-  ProfileOutlined,
   UserOutlined,
-  ShoppingOutlined,
 } from "@ant-design/icons";
-import CircleBg from "../../public/img/circle_bg.png";
-import PixelBg from "../../public/img/pixel_bg.png";
-import { useDispatch } from "react-redux";
-import { logOut } from "~/store/auth/action";
-import { appName, marketplaceURL } from "~/repositories/Repository";
+import {useDispatch} from "react-redux";
+import {logOut} from "~/store/auth/action";
 import SimpleCrypto from "simple-crypto-js";
 var simpleCrypto = new SimpleCrypto("myTotalySecretKey");
 
-const AdminContainerDefault = ({ children, title }) => {
+const AdminContainerDefault = ({children, title}) => {
   let titleView;
   if (title !== undefined) {
     titleView = process.env.title + " | " + title;
@@ -34,12 +28,12 @@ const AdminContainerDefault = ({ children, title }) => {
     {
       text: "Unclaimed Stores",
       url: "/admin/unclaimed-stores",
-      icon: <CodeSandboxOutlined style={{ fontSize: 20 }} />,
+      icon: <CodeSandboxOutlined style={{fontSize: 20}} />,
     },
     {
       text: "Profile",
       url: "/profile",
-      icon: <UserOutlined style={{ fontSize: 20 }} />,
+      icon: <UserOutlined style={{fontSize: 20}} />,
     },
     {
       text: "Logout",
@@ -47,21 +41,21 @@ const AdminContainerDefault = ({ children, title }) => {
         e.preventDefault();
         dispatch(logOut());
       },
-      icon: <PoweroffOutlined style={{ fontSize: 20 }} />,
+      icon: <PoweroffOutlined style={{fontSize: 20}} />,
     },
   ];
 
   const menu = (
     <Menu className="dark-menu">
-      <div style={{ padding: "10px 20px" }}>
+      <div style={{padding: "10px 20px"}}>
         <WidgetUserWelcome dark={true} />
       </div>
-      <hr color="#fff" style={{ opacity: 0.5 }} />
+      <hr color="#fff" style={{opacity: 0.5}} />
 
-      {menuItems.map(({ text, url, icon, action }) => (
+      {menuItems.map(({text, url, icon, action}) => (
         <Menu.Item key={text}>
-          <a {...(url ? { href: url } : action ? { onClick: action } : {})}>
-            <i style={{ marginRight: 20 }}>{icon}</i>
+          <a {...(url ? {href: url} : action ? {onClick: action} : {})}>
+            <i style={{marginRight: 20}}>{icon}</i>
             {text}
           </a>
         </Menu.Item>
@@ -74,12 +68,12 @@ const AdminContainerDefault = ({ children, title }) => {
       <Head>
         <title>{titleView}</title>
       </Head>
-      <Header style={{ position: "fixed", zIndex: 1000, width: "100%" }}>
+      <Header style={{position: "fixed", zIndex: 1000, width: "100%"}}>
         <Row justify="space-between" align="middle">
           <div className="logo">
-            <img style={{ maxWidth: 150 }} src={LogoWhite} />
+            <img style={{maxWidth: 150}} src="/img/logo_white.png" />
           </div>
-          <div style={{ display: "inherit" }}>
+          <div style={{display: "inherit"}}>
             <Dropdown overlay={menu} placement="bottomLeft">
               <i
                 style={{
@@ -130,7 +124,7 @@ const AdminContainerDefault = ({ children, title }) => {
               zIndex: 1,
             }}
           >
-            <img style={{ width: "100%" }} src={PixelBg} />
+            <img style={{width: "100%"}} src="/img/pixel_bg.png" />
           </div>
           <div
             style={{
@@ -141,9 +135,9 @@ const AdminContainerDefault = ({ children, title }) => {
               zIndex: 1,
             }}
           >
-            <img style={{ width: "100%" }} src={CircleBg} />
+            <img style={{width: "100%"}} src="/img/circle_bg.png" />
           </div>
-          <div style={{ position: "relative", zIndex: 2 }}>{children}</div>
+          <div style={{position: "relative", zIndex: 2}}>{children}</div>
         </div>
       </main>
     </div>
