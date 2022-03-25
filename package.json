@@ -17,7 +17,7 @@
 		"@zeit/next-sass": "^1.0.1",
 		"antd": "^4.8.5",
 		"antd-input-tag": "^1.0.14",
-		"apexcharts": "^3.22.2",
+		"apexcharts": "^3.33.2",
 		"axios": "^0.21.2",
 		"cryptr": "^6.0.2",
 		"dayjs": "^1.10.6",
