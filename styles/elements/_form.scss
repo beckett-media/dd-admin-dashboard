@@ -1,11 +1,11 @@
 .ant-input-affix-wrapper {
-  padding: 0 11px !important;
+  padding: 00 11px !important;
 }
 .form-control {
   outline: none;
   height: 50px;
   font-size: 14px;
-  padding: 0 20px;
+  padding: 0 20px ;
   border: none;
   height: 50px;
   border-radius: 0;
@@ -23,11 +23,23 @@
     box-shadow: 0 0 0 #000;
     border-color: $color-1st;
   }
-  input {
+  &.ant-input {
     height: 50px;
-    background-color: transparent;
+    border-radius: 0;
+    border: 1px solid #dddddd;
+    color: #fff;
+    background: rgba(#000, 0.1);
+    
+
+    &:focus {
+      border-color: $color-1st;
+      outline: none;
+      box-shadow: 0 0 0 transparent;
+      background: rgba(#000, 0.1);
+    }
   }
 }
+
 
 textarea.form-control {
   height: auto;
